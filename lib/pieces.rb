@@ -30,7 +30,12 @@ end
 
 class Pawn < Pieces
 
-	def valid_move?(strt, fin)
+	def valid_moves
+		@moves =[]
+		self.colour == "W" ? i = 1 : i = -1
+		@moves << [@cur_pos[0], @cur_pos[1]+(2*i)] if $game.turns == 0
+		@moves << [@cur_pos[0], @cur_pos[1]+(i)]
+
 	end
 	
 end
