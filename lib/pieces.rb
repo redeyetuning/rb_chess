@@ -40,14 +40,6 @@ class Rook < Pieces
 end
 
 class Knight < Pieces
-
-	def valid_moves
-		@moves = []
-		@combos.each do |combo|
-			new_pos = [@cur_pos[0]+combo[0],@cur_pos[1]+combo[1]]
-			@moves << new_pos if $game.board_state[new_pos].nil? and new_pos[0]<9 and new_pos[1]<9 and new_pos[0]>0 and new_pos[1]>0  
-		end
-	end 
 	
 end
 
