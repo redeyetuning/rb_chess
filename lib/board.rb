@@ -14,18 +14,18 @@ class Board
 		@board_state = Hash[tiles.map{|tile| [tile, nil]}]
 
 		[[1,2],[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[8,2]].each {|tile| @board_state[tile] = Pawn.new(tile, "W")}
-		[[1,1],[8,1]].each {|tile| @board_state[tile] = Rook.new(tile, "W")}
-		[[2,1],[7,1]].each {|tile| @board_state[tile] = Knight.new(tile, "W")}
-		[[3,1],[6,1]].each {|tile| @board_state[tile] = Bishop.new(tile,"W")}
-		@board_state[[5,1]] = King.new([5,1],"W")
-		@board_state[[4,1]] = Queen.new([4,1], "W")
+		[[1,1],[8,1]].each {|tile| @board_state[tile] = Rook.new(tile, "W", [[1,0],[-1,0],[0,1],[0,-1]])}
+		[[2,1],[7,1]].each {|tile| @board_state[tile] = Knight.new(tile, "W", [[1,2], [1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])}
+		[[3,1],[6,1]].each {|tile| @board_state[tile] = Bishop.new(tile,"W", [[1,1],[1,-1],[-1,1],[-1,-1]])}
+		@board_state[[5,1]] = King.new([5,1],"W", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+		@board_state[[4,1]] = Queen.new([4,1], "W",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 
 		[[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],[8,7]].each {|tile| @board_state[tile] = Pawn.new(tile,"B")}
-		[[1,8],[8,8]].each {|tile| @board_state[tile] = Rook.new(tile,"B")}
-		[[2,8],[7,8]].each {|tile| @board_state[tile] = Knight.new(tile,"B")}
-		[[3,8],[6,8]].each {|tile| @board_state[tile] = Bishop.new(tile,"B")}
-		@board_state[[4,8]] = King.new([4,8],"B")
-		@board_state[[5,8]] = Queen.new([5,8],"B")
+		[[1,8],[8,8]].each {|tile| @board_state[tile] = Rook.new(tile,"B", [[1,0],[-1,0],[0,1],[0,-1]])}
+		[[2,8],[7,8]].each {|tile| @board_state[tile] = Knight.new(tile,"B", [[1,2], [1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])}
+		[[3,8],[6,8]].each {|tile| @board_state[tile] = Bishop.new(tile,"B", [[1,1],[1,-1],[-1,1],[-1,-1]])}
+		@board_state[[4,8]] = King.new([4,8],"B",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+		@board_state[[5,8]] = Queen.new([5,8],"B",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 	end
 
 	def alphnum_coord_trnslt (alph_num_coord)
