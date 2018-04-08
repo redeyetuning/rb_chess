@@ -1,10 +1,25 @@
 class Pieces
 	attr_accessor :cur_pos, :colour, :moves
 
-	def initialize cur_pos, colour
+	def initialize cur_pos, colour, combos= nil
 		@cur_pos = cur_pos
 		@colour = colour
-		#valid_moves()
+		@combos = combos
+	end
+
+	def valid_moves 
+		@moves = []
+		@combos.each do |combo|
+			i = @cur_pos[0] + combo[0]	
+			j = @cur_pos[1] + combo[1]
+			
+			while $game.board_state[[i,j]].nil? and i<9 and j<9 and i>0 and j>0
+				@moves << [i,j]
+				i += combo[0]
+				j += combo[1]
+			end
+
+		end 
 	end
 
 end
@@ -18,22 +33,6 @@ end
 
 class Rook < Pieces
 	
-	def valid_moves 
-		@moves = []
-		combos = [[1,0],[-1,0],[0,1],[0,-1]]
-		combos.each do |combo|
-			i = @cur_pos[0] + combo[0]	
-			j = @cur_pos[1] + combo[1]
-			
-			while $game.board_state[[i,j]].nil? and i<9 and j<9 and i>0 and j>0
-				@moves << [i,j]
-				i += combo[0]
-				j += combo[1]
-			end
-
-		end 
-	end
-
 end
 
 class Knight < Pieces
@@ -51,42 +50,10 @@ end
 
 class Bishop < Pieces
 
-	def valid_moves 
-		@moves = []
-		combos = [[1,1],[1,-1],[-1,1],[-1,-1]]
-		combos.each do |combo|
-			i = @cur_pos[0] + combo[0]	
-			j = @cur_pos[1] + combo[1]
-			
-			while $game.board_state[[i,j]].nil? and i<9 and j<9 and i>0 and j>0
-				@moves << [i,j]
-				i += combo[0]
-				j += combo[1]
-			end
-
-		end 
-	end
-	
 end
 
 class Queen < Pieces
 	
-	def valid_moves 
-		@moves = []
-		combos = [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]]
-		combos.each do |combo|
-			i = @cur_pos[0] + combo[0]	
-			j = @cur_pos[1] + combo[1]
-			
-			while $game.board_state[[i,j]].nil? and i<9 and j<9 and i>0 and j>0
-				@moves << [i,j]
-				i += combo[0]
-				j += combo[1]
-			end
-
-		end 
-	end
-
 end
 
 class King < Pieces
