@@ -7,9 +7,6 @@ class Pieces
 		#valid_moves()
 	end
 
-	def mv_on_board?(strt, fin)
-		true if strt[0] + fin[0] <= 8 or strt[1] + fin[1] <= 8 
-	end
 end
 
 class Pawn < Pieces
@@ -20,7 +17,6 @@ class Pawn < Pieces
 end
 
 class Rook < Pieces
-
 	
 	def valid_moves
 	
@@ -51,13 +47,21 @@ class Rook < Pieces
 
 	end 
 	
-
-
 end
 
 
 
 class Knight < Pieces
+
+	def valid_moves
+		@moves = []
+		combos = [[1,2], [1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]]
+		combos.each do |combo|
+			new_pos = [@cur_pos[0]+combo[0],@cur_pos[1]+combo[1]]
+			@moves << new_pos if $game.board_state[new_pos].nil? and new_pos[0]<9 and new_pos[1]<9  
+		end
+
+	end 
 
 	def valid_move?(strt, fin)
 		if 	( (strt[0]-fin[0]).abs == 2 and (strt[1]-fin[1]).abs == 1 ) or 
