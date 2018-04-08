@@ -18,33 +18,22 @@ end
 
 class Rook < Pieces
 	
-	def valid_moves
-		@moves =[]
-		
-		i = @cur_pos[0] + 1
-		while $game.board_state[[i,@cur_pos[1]]].nil? and i<9
-			@moves << [i,@cur_pos[1]]
-			i += 1
-		end
-	
-		i = @cur_pos[0] - 1
-		while $game.board_state[[i,@cur_pos[1]]].nil? and i>0
-			@moves << [i,@cur_pos[1]]
-			i -= 1
-		end
-	
-		j = @cur_pos[1] + 1
-		while $game.board_state[[@cur_pos[0],j]].nil? and j<9
-			@moves << [@cur_pos[0],j]
-			j += 1
-		end
-		j = @cur_pos[1] - 1
-		while $game.board_state[[@cur_pos[0],j] ].nil? and j>0
-			@moves << [@cur_pos[0],j]
-			j -= 1
-		end
-	end 
-	
+	def valid_moves 
+		@moves = []
+		combos = [[1,0],[-1,0],[0,1],[0,-1]]
+		combos.each do |combo|
+			puts i = @cur_pos[0] + combo[0]	
+			puts j = @cur_pos[1] + combo[1]
+			
+			while $game.board_state[[i,j]].nil? and i<9 and j<9 and i>0 and j>0
+				@moves << [i,j]
+				i += combo[0]
+				j += combo[1]
+			end
+
+		end 
+	end
+
 end
 
 class Knight < Pieces
