@@ -13,9 +13,12 @@ class Pieces
 			i = @cur_pos[0] + combo[0]	
 			j = @cur_pos[1] + combo[1]
 			
-			while $game.board_state[[i,j]].nil? and i<9 and j<9 and i>0 and j>0
+			while ($game.board_state[[i,j]].nil? or $game.board_state[[i,j]].colour !=self.colour) and i<9 and j<9 and i>0 and j>0
+
 				@moves << [i,j]
 				if self.class.name == "King" or self.class.name == "Knight"
+					break
+				elsif $game.board_state[[i,j]] != nil
 					break
 				else 
 					i += combo[0] 	
