@@ -22,8 +22,8 @@ class Rook < Pieces
 		@moves = []
 		combos = [[1,0],[-1,0],[0,1],[0,-1]]
 		combos.each do |combo|
-			puts i = @cur_pos[0] + combo[0]	
-			puts j = @cur_pos[1] + combo[1]
+			i = @cur_pos[0] + combo[0]	
+			j = @cur_pos[1] + combo[1]
 			
 			while $game.board_state[[i,j]].nil? and i<9 and j<9 and i>0 and j>0
 				@moves << [i,j]
@@ -55,8 +55,8 @@ class Bishop < Pieces
 		@moves = []
 		combos = [[1,1],[1,-1],[-1,1],[-1,-1]]
 		combos.each do |combo|
-			puts i = @cur_pos[0] + combo[0]	
-			puts j = @cur_pos[1] + combo[1]
+			i = @cur_pos[0] + combo[0]	
+			j = @cur_pos[1] + combo[1]
 			
 			while $game.board_state[[i,j]].nil? and i<9 and j<9 and i>0 and j>0
 				@moves << [i,j]
@@ -70,14 +70,23 @@ class Bishop < Pieces
 end
 
 class Queen < Pieces
-	def valid_move?(strt, fin)
-		if 	( (strt[0]-fin[0]).abs <= 8 and (strt[1]-fin[1]).abs == 0 ) or 
-				( (strt[1]-fin[1]).abs <= 8 and (strt[0]-fin[0]).abs == 0 ) or
-				( (strt[0]-fin[0]).abs == (strt[1]-fin[1]).abs )
-			return true
-		else return false
+	
+	def valid_moves 
+		@moves = []
+		combos = [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]]
+		combos.each do |combo|
+			i = @cur_pos[0] + combo[0]	
+			j = @cur_pos[1] + combo[1]
+			
+			while $game.board_state[[i,j]].nil? and i<9 and j<9 and i>0 and j>0
+				@moves << [i,j]
+				i += combo[0]
+				j += combo[1]
+			end
+
 		end 
-	end 
+	end
+
 end
 
 class King < Pieces
