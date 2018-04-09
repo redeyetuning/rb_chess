@@ -10,24 +10,6 @@ class Board
 		populate_board
 	end
 
-	def display_board
-		print "     1    2    3    4    5    6    7    8  \n" 
-		y = 8
-		8.times do
-			print "#{y} " 
-			(1..8).each {|x| 
-				if $game.board_state[[x,y]] != nil
-					print "| #{$game.board_state[[x,y]].ref} "
-				else  
-					print "|    "  
-				end
-			}
-			print "| #{y}\n"
-			y -=1
-		end
-		print "     1    2    3    4    5    6    7    8 "
-	end
-
 	def populate_board
 		tiles = [*1..8].repeated_permutation(2).to_a #Array from "1,1" -> "8,8"
 		@board_state = Hash[tiles.map{|tile| [tile, nil]}]
@@ -45,6 +27,46 @@ class Board
 		[[3,8],[6,8]].each {|tile| @board_state[tile] = Bishop.new(tile,"B", [[1,1],[1,-1],[-1,1],[-1,-1]])}
 		@board_state[[4,8]] = King.new([4,8],"B",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 		@board_state[[5,8]] = Queen.new([5,8],"B",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+	end
+
+	def display_board
+		print "     1    2    3    4    5    6    7    8  \n" 
+		y = 8
+		8.times do
+			print "#{y} " 
+			(1..8).each {|x| 
+				if @board_state[[x,y]] != nil
+					print "| #{$game.board_state[[x,y]].ref} "
+				else  
+					print "|    "  
+				end
+			}
+			print "| #{y}\n"
+			y -=1
+		end
+		print "     1    2    3    4    5    6    7    8 \n\n"
+	end
+
+	def updt_moves
+		@board_state.each {|key, value| value.valid_moves unless value.nil?}
+	end
+
+	def get_move (type)
+		puts "Enter the #{type} coordinate of your move:"
+		gets.chomp.split(",").map{|x| x.to_i}
+	end
+
+	def make_move
+		strt = get_move("start")
+		fin = get_move("target")
+		
+		updt_moves
+
+		if @board_state[strt].moves.include?(fin)
+			puts "valid_move"
+		else
+			puts	"Invalid move"
+		end
 	end
 
 	def alphnum_coord_trnslt (alph_num_coord)

@@ -1,10 +1,15 @@
 class Pieces
-	attr_accessor :cur_pos, :colour, :moves
+	attr_accessor :cur_pos, :colour, :moves, :ref
 
 	def initialize cur_pos, colour, combos= nil
 		@cur_pos = cur_pos
 		@colour = colour
 		@combos = combos
+		if self.class.name == "King"
+			@ref = "#{colour}+"
+		else
+			@ref = "#{colour}#{self.class.name[0]}" 
+		end
 	end
 
 	def valid_moves 
