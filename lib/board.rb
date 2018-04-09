@@ -3,10 +3,29 @@ require_relative 'pieces'
 
 class Board
 
-	attr_accessor :board_state
+	attr_accessor :board_state, :turns
 
 	def initialize
+		@turns = 0
 		populate_board
+	end
+
+	def display_board
+		print "     1    2    3    4    5    6    7    8  \n" 
+		y = 8
+		8.times do
+			print "#{y} " 
+			(1..8).each {|x| 
+				if $game.board_state[[x,y]] != nil
+					print "| #{$game.board_state[[x,y]].ref} "
+				else  
+					print "|    "  
+				end
+			}
+			print "| #{y}\n"
+			y -=1
+		end
+		print "     1    2    3    4    5    6    7    8 "
 	end
 
 	def populate_board
