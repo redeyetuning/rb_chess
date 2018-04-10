@@ -57,19 +57,38 @@ class Board
 		gets.chomp.split(",").map{|x| x.to_i}
 	end
 
-	def make_move
-		strt = get_move("start")
-		fin = get_move("target")
+	def correct_strt? (coord)
+		(@turns == 0 or @turns%2 == 0) ? turn_colour = "W" : turn_colour = "B"
 		
-		updt_moves
-
-		if @board_state[strt].moves.include?(fin)
-			@board_state[fin] = @board_state[strt]
-			@board_state[fin].cur_pos = fin
-			@board_state[strt] = nil
+		if coord == nil
+			false	
+		elsif @board_state[coord].nil?
+			puts "There isn't a piece at that coordinate, please try again!"  
+		elsif @board_state[coord].colour != turn_colour
+			puts "It's not that players turn!" 
 		else
-			puts	"Invalid move please try again."
+			true
 		end
+				
+	end
+
+	def make_move
+		puts ""
+		loop do
+			strt = get_move("start") until correct_strt?(strt) 
+			fin = get_move("target")
+		
+			updt_moves
+
+			if @board_state[strt].moves.include?(fin)
+				@board_state[fin] = @board_state[strt]
+				@board_state[fin].cur_pos = fin
+				@board_state[strt] = nil
+				break
+			else
+				puts	"That is an invalid move, please try again."
+			end
+		end	
 	end
 
 	def alphnum_coord_trnslt (alph_num_coord)
