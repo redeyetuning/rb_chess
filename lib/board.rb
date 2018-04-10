@@ -63,9 +63,11 @@ class Board
 		updt_moves
 
 		if @board_state[strt].moves.include?(fin)
-			puts "valid_move"
+			@board_state[fin] = @board_state[strt]
+			@board_state[fin].cur_pos = fin
+			@board_state[strt] = nil
 		else
-			puts	"Invalid move"
+			puts	"Invalid move please try again."
 		end
 	end
 
