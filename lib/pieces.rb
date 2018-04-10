@@ -41,9 +41,16 @@ class Pawn < Pieces
 	def valid_moves
 		@moves =[]
 		self.colour == "W" ? i = 1 : i = -1
-		@moves << [@cur_pos[0], @cur_pos[1]+(2*i)] if $game.turns == 0
-		@moves << [@cur_pos[0], @cur_pos[1]+(i)]
+		if $game.board_state[[@cur_pos[0], @cur_pos[1]+(i)]].nil?
+				@moves << [@cur_pos[0], @cur_pos[1]+(i)]
+				if ((@cur_pos[1] == 2 && self.colour == "W") or (@cur_pos[1] == 7 && self.colour == "B")) and $game.board_state[[@cur_pos[0], @cur_pos[1]+(2*i)]].nil?
+					@moves << [@cur_pos[0], @cur_pos[1]+(2*i)]
+				end	
+		end
 
+		if (@cur_pos[0]-1) > 0 && $game.board_state[[@cur_pos[0]-1,@cur_pos[1]+i]] != nil then @moves << [@cur_pos[0]-1,@cur_pos[1]+i] end
+		if (@cur_pos[0]+1) < 9 && $game.board_state[[@cur_pos[0]+1,@cur_pos[1]+i]] != nil then @moves << [@cur_pos[0]+1,@cur_pos[1]+i] end
+		
 	end
 	
 end
