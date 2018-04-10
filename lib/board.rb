@@ -30,7 +30,8 @@ class Board
 	end
 
 	def display_board
-		print "     1    2    3    4    5    6    7    8  \n" 
+		print "     1    2    3    4    5    6    7    8  \n"
+		print "  -----------------------------------------\n" 
 		y = 8
 		8.times do
 			print "#{y} " 
@@ -41,7 +42,7 @@ class Board
 					print "|    "  
 				end
 			}
-			print "| #{y}\n"
+			print "| #{y}\n   -----------------------------------------\n"
 			y -=1
 		end
 		print "     1    2    3    4    5    6    7    8 \n\n"

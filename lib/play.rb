@@ -5,6 +5,7 @@ $game = Board.new
 $game.display_board
 
 5.times do 
+	$game
 	$game.make_move
 	$game.display_board
 	$game.turns += 1
