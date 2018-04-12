@@ -73,7 +73,7 @@ class Board
 	end
 
 	def make_move
-		puts ""
+		(@turns == 0 or @turns%2 == 0) ?  (puts "-> WHITE TURN <-\n\n") : (puts "-> BLACK TURN <-\n\n")
 		loop do
 			strt = get_move("start") until correct_strt?(strt) 
 			fin = get_move("target")
