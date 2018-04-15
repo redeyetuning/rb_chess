@@ -80,7 +80,8 @@ class Board
 	end
 
 	def make_move
-		@turn_colour == "W" ?  (puts "-> WHITE TURN <-\n\n") : (puts "-> BLACK TURN <-\n\n")
+		@turn_colour == "W" ? opp = "B" : opp = "W"
+		puts "-> #{@turn_colour} TURN <-\n\n"
 		loop do
 			strt = get_move("start") until correct_strt?(strt) 
 			fin = get_move("target")
@@ -98,9 +99,16 @@ class Board
 			end
 		end
 		updt_moves
+		puts "#{opp} is in check!" if in_check?(opp)
 	end
 
-	def in_check?
+	def in_check? colour
+		colour == "B" ? pos = b_king_pos : pos = w_king_pos
+		@board_state.any? do |key, value|
+			if value != nil and value.colour != colour
+				value.moves.include?(pos)
+			end 
+		end		
 
 	end
 

@@ -6,7 +6,7 @@ $game.updt_moves
 $game.disp_board
 
 
-5.times do 
+20.times do 
 	$game.turn_colour
 	$game
 	$game.make_move
