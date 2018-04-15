@@ -8,8 +8,8 @@ describe Pieces do
 	end
 
 	describe Rook do
-		
 		describe "#valid_moves" do
+			
 			context "White Rook at start position [1,1]" do
 				it "returns empty array" do
 					expect($game.board_state[[1,1]].moves).to eql([])
@@ -38,11 +38,9 @@ describe Pieces do
 			end		
 			
 		end
-
 	end
 
 	describe Knight do
-		
 		describe "#valid_moves" do
 
 			context "White Knight given at start position [2,1] with all other pieces at home" do
@@ -75,7 +73,6 @@ describe Pieces do
 			end
 
 		end
-
 	end
 
 	describe Bishop do
@@ -109,22 +106,19 @@ describe Pieces do
 				end
 			end
 			
-			
 		end
 	end
-
-
 
 	describe Queen do
 		describe "#valid_moves" do
 			
-			context "White Queen given at start position [4,1]" do
+			context "White Queen at start position [4,1]" do
 				it "returns empty array" do
 					expect($game.board_state[[4,1]].moves).to eql([])
 				end
 			end
 			
-			context "White Queen given at position [4,3]" do
+			context "White Queen given position [4,3]" do
 				before do
 					$game.board_state[[4,3]] = Queen.new([4,3],"W",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 					$game.board_state[[4,1]] = nil 
@@ -136,7 +130,7 @@ describe Pieces do
 				end
 			end
 			
-			context "Black Queen at start position [4,6] with White Queen at [4,3]" do
+			context "Black Queen at position [4,6] with White Queen at [4,3]" do
 				before do
 					$game.board_state[[4,6]] = Queen.new([4,6],"B",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 					$game.board_state[[5,8]] = nil 
@@ -154,12 +148,41 @@ describe Pieces do
 	end
 
 	describe King do
-		
 		describe "#valid_move?" do
+			
+			context "White King at start position [5,1]" do
+				it "returns empty array" do
+					expect($game.board_state[[5,1]].moves).to eql([])
+				end
+			end
+			
+			context "White King at position [5,3]" do
+				before do
+					$game.board_state[[5,3]] = King.new([5,3],"W", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+					$game.board_state[[5,1]] = nil 
+					$game.updt_moves
+				end
 
+				it "returns array [[5,4],[6,4],[6,3],[4,3],[4,4]]" do
+					expect($game.board_state[[5,3]].moves).to eql([[5,4],[6,4],[6,3],[4,3],[4,4]])
+				end
+			end
+			
+			context "Black King at position [6,4] with e Queen at [5,3]" do
+				before do
+					$game.board_state[[5,3]] = King.new([5,3],"W", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+					$game.board_state[[5,1]] = nil
+					$game.board_state[[6,4]] = King.new([6,4],"B", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+					$game.board_state[[4,8]] = nil 
+					$game.updt_moves
+				end
+
+				it "returns array [[6,5],[7,5],[7,4],[7,3],[6,3],[5,3],[5,4],[5,5]]" do
+					expect($game.board_state[[6,4]].moves).to eql([[6,5],[7,5],[7,4],[7,3],[6,3],[5,3],[5,4],[5,5]])
+				end
+			end
 			
 		end
-
 	end
 
 end
