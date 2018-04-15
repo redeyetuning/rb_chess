@@ -3,7 +3,7 @@ require_relative 'pieces'
 
 class Board
 
-	attr_accessor :board_state, :turns
+	attr_accessor :board_state, :turns, :turn_colour, :b_king_pos, :w_king_pos 
 
 	def initialize
 		@turns = 0
@@ -18,18 +18,25 @@ class Board
 		[[1,1],[8,1]].each {|tile| @board_state[tile] = Rook.new(tile, "W", [[1,0],[-1,0],[0,1],[0,-1]])}
 		[[2,1],[7,1]].each {|tile| @board_state[tile] = Knight.new(tile, "W", [[1,2], [1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])}
 		[[3,1],[6,1]].each {|tile| @board_state[tile] = Bishop.new(tile,"W", [[1,1],[1,-1],[-1,1],[-1,-1]])}
-		@board_state[[5,1]] = King.new([5,1],"W", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 		@board_state[[4,1]] = Queen.new([4,1], "W",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+		@board_state[[5,1]] = King.new([5,1],"W", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+		@w_king_pos = [5,1]
 
 		[[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],[8,7]].each {|tile| @board_state[tile] = Pawn.new(tile,"B")}
 		[[1,8],[8,8]].each {|tile| @board_state[tile] = Rook.new(tile,"B", [[1,0],[-1,0],[0,1],[0,-1]])}
 		[[2,8],[7,8]].each {|tile| @board_state[tile] = Knight.new(tile,"B", [[1,2], [1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])}
 		[[3,8],[6,8]].each {|tile| @board_state[tile] = Bishop.new(tile,"B", [[1,1],[1,-1],[-1,1],[-1,-1]])}
-		@board_state[[4,8]] = King.new([4,8],"B",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 		@board_state[[5,8]] = Queen.new([5,8],"B",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+		@board_state[[4,8]] = King.new([4,8],"B",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+		@b_king_pos = [4,8]	
 	end
 
-	def display_board
+	def turn_colour
+		(@turns == 0 or @turns%2 == 0) ?  (@turn_colour = "W") : (@turn_colour = "B")
+	end
+
+
+	def disp_board
 		print "     1    2    3    4    5    6    7    8  \n"
 		print "  -----------------------------------------\n" 
 		y = 8
@@ -73,22 +80,28 @@ class Board
 	end
 
 	def make_move
-		(@turns == 0 or @turns%2 == 0) ?  (puts "-> WHITE TURN <-\n\n") : (puts "-> BLACK TURN <-\n\n")
+		@turn_colour == "W" ?  (puts "-> WHITE TURN <-\n\n") : (puts "-> BLACK TURN <-\n\n")
 		loop do
 			strt = get_move("start") until correct_strt?(strt) 
 			fin = get_move("target")
 		
-			updt_moves
-
 			if @board_state[strt].moves.include?(fin)
 				@board_state[fin] = @board_state[strt]
 				@board_state[fin].cur_pos = fin
 				@board_state[strt] = nil
+				if @board_state[fin].class.name == "King"
+					@turn_colour == "B" ? @b_king_pos = fin : @w_king_pos = fin
+				end
 				break
 			else
 				puts	"That is an invalid move, please try again."
 			end
-		end	
+		end
+		updt_moves
+	end
+
+	def in_check?
+
 	end
 
 	def alphnum_coord_trnslt (alph_num_coord)
