@@ -124,19 +124,28 @@ class Board
 	end
 
 	def in_checkmate? colour
-		colour == "BLACK" ? pos = b_king_pos : pos = w_king_pos
-		return false if @board_state[pos].moves == [] 
-		@board_state[pos].moves.all? do |move|
-				test_board = Marshal::load(Marshal.dump($act_board))
-				$act_board = test_board
-				test_board.board_state[move] = test_board.board_state[pos]
-				test_board.board_state[move].cur_pos = move
-				test_board.board_state[pos]=nil
-				colour == "WHITE" ? test_board.w_king_pos = move : test_board.b_king_pos = move
-				test_board.updt_moves
-				test_board.in_check?(colour)					
+		output = []
+		@board_state.each do |key, value| 
+			if value != nil
+				if value.colour == colour
+					output << value.moves.all? do |move|
+						test_board = Marshal::load(Marshal.dump($game))
+						$act_board = test_board
+						test_board.board_state[move] = test_board.board_state[key]	
+						test_board.board_state[move].cur_pos = move
+						test_board.board_state[key]=nil
+						if test_board.board_state[move].class.name == "King"
+							colour == "WHITE" ? test_board.w_king_pos = move : test_board.b_king_pos = move
+						end
+						test_board.updt_moves
+						test_board.in_check?(colour)
+					end
+				end
+			end
 		end
-
+		
+		output.all? {|x| x}
+		
 	end
 
 	def alphnum_coord_trnslt (alph_num_coord)
