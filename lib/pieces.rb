@@ -6,9 +6,9 @@ class Pieces
 		@colour = colour
 		@combos = combos
 		if self.class.name == "King"
-			@ref = "#{colour}+"
+			@ref = "#{colour[0]}+"
 		else
-			@ref = "#{colour}#{self.class.name[0]}" 
+			@ref = "#{colour[0]}#{self.class.name[0]}" 
 		end
 	end
 
@@ -40,10 +40,10 @@ class Pawn < Pieces
 
 	def valid_moves
 		@moves =[]
-		self.colour == "W" ? i = 1 : i = -1
+		self.colour == "WHITE" ? i = 1 : i = -1
 		if $game.board_state[[@cur_pos[0], @cur_pos[1]+(i)]].nil?
 				@moves << [@cur_pos[0], @cur_pos[1]+(i)]
-				if ((@cur_pos[1] == 2 && self.colour == "W") or (@cur_pos[1] == 7 && self.colour == "B")) and $game.board_state[[@cur_pos[0], @cur_pos[1]+(2*i)]].nil?
+				if ((@cur_pos[1] == 2 && self.colour == "WHITE") or (@cur_pos[1] == 7 && self.colour == "BLACK")) and $game.board_state[[@cur_pos[0], @cur_pos[1]+(2*i)]].nil?
 					@moves << [@cur_pos[0], @cur_pos[1]+(2*i)]
 				end	
 		end

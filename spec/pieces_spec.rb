@@ -17,7 +17,7 @@ describe Pieces do
 			end
 			context "White Rook given a start position of [1,3] with all other pieces at home" do
 				before do 
-					$game.board_state[[1,3]] = Rook.new([1,3], "W", [[1,0],[-1,0],[0,1],[0,-1]])
+					$game.board_state[[1,3]] = Rook.new([1,3], "WHITE", [[1,0],[-1,0],[0,1],[0,-1]])
 					$game.board_state[[1,1]] = nil 
 					$game.updt_moves
 				end
@@ -27,8 +27,8 @@ describe Pieces do
 			end
 			context "Black Rook given a start position of [1,6] with a white piece at [1,3]" do
 				before do 
-					$game.board_state[[1,3]] = Rook.new([1,3], "W", [[1,0],[-1,0],[0,1],[0,-1]])
-					$game.board_state[[1,6]] = Rook.new([1,6], "B", [[1,0],[-1,0],[0,1],[0,-1]])
+					$game.board_state[[1,3]] = Rook.new([1,3], "WHITE", [[1,0],[-1,0],[0,1],[0,-1]])
+					$game.board_state[[1,6]] = Rook.new([1,6], "BLACK", [[1,0],[-1,0],[0,1],[0,-1]])
 					$game.board_state[[1,8]] = nil 
 					$game.updt_moves
 				end
@@ -50,7 +50,7 @@ describe Pieces do
 			end
 			context "White Knight given at start position [1,5] with all other pieces at home" do
 				before do 
-					$game.board_state[[1,5]] = Knight.new([1,5], "W", [[1,2],[1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])
+					$game.board_state[[1,5]] = Knight.new([1,5], "WHITE", [[1,2],[1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])
 					$game.board_state[[2,1]] = nil 
 					$game.updt_moves
 				end
@@ -61,9 +61,9 @@ describe Pieces do
 			
 			context "Black Knight given a start position [3,4] with white piece at [1,5]" do
 				before do 
-					$game.board_state[[1,5]] = Knight.new([1,5], "W", [[1,2],[1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])
+					$game.board_state[[1,5]] = Knight.new([1,5], "WHITE", [[1,2],[1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])
 					$game.board_state[[2,1]] = nil
-					$game.board_state[[3,4]] = Knight.new([3,4], "B", [[1,2],[1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])
+					$game.board_state[[3,4]] = Knight.new([3,4], "BLACK", [[1,2],[1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])
 					$game.board_state[[2,8]] = nil  
 					$game.updt_moves
 				end
@@ -85,7 +85,7 @@ describe Pieces do
 			end
 			context "White Bishop given a start position of [3,3] with all other pieces at home" do
 				before do 
-					$game.board_state[[3,3]] = Bishop.new([3,3],"W", [[1,1],[1,-1],[-1,1],[-1,-1]])
+					$game.board_state[[3,3]] = Bishop.new([3,3],"WHITE", [[1,1],[1,-1],[-1,1],[-1,-1]])
 					$game.board_state[[3,1]] = nil 
 					$game.updt_moves
 				end
@@ -95,9 +95,9 @@ describe Pieces do
 			end
 			context "Black Bishop given a start position of [6,6] with a white piece at [3,3]" do
 				before do 
-					$game.board_state[[3,3]] = Bishop.new([3,3],"W", [[1,1],[1,-1],[-1,1],[-1,-1]])
+					$game.board_state[[3,3]] = Bishop.new([3,3],"WHITE", [[1,1],[1,-1],[-1,1],[-1,-1]])
 					$game.board_state[[3,1]] = nil
-					$game.board_state[[6,6]] = Bishop.new([6,6],"B", [[1,1],[1,-1],[-1,1],[-1,-1]])
+					$game.board_state[[6,6]] = Bishop.new([6,6],"BLACK", [[1,1],[1,-1],[-1,1],[-1,-1]])
 					$game.board_state[[5,8]] = nil 
 					$game.updt_moves	
 				end
@@ -120,7 +120,7 @@ describe Pieces do
 			
 			context "White Queen given position [4,3]" do
 				before do
-					$game.board_state[[4,3]] = Queen.new([4,3],"W",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+					$game.board_state[[4,3]] = Queen.new([4,3],"WHITE",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 					$game.board_state[[4,1]] = nil 
 					$game.updt_moves
 				end
@@ -132,9 +132,9 @@ describe Pieces do
 			
 			context "Black Queen at position [4,6] with White Queen at [4,3]" do
 				before do
-					$game.board_state[[4,6]] = Queen.new([4,6],"B",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+					$game.board_state[[4,6]] = Queen.new([4,6],"BLACK",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 					$game.board_state[[5,8]] = nil 
-					$game.board_state[[4,3]] = Queen.new([4,3],"W",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+					$game.board_state[[4,3]] = Queen.new([4,3],"WHITE",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 					$game.board_state[[4,1]] = nil 
 					$game.updt_moves
 				end
@@ -158,7 +158,7 @@ describe Pieces do
 			
 			context "White King at position [5,3]" do
 				before do
-					$game.board_state[[5,3]] = King.new([5,3],"W", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+					$game.board_state[[5,3]] = King.new([5,3],"WHITE", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 					$game.board_state[[5,1]] = nil 
 					$game.updt_moves
 				end
@@ -170,9 +170,9 @@ describe Pieces do
 			
 			context "Black King at position [6,4] with e Queen at [5,3]" do
 				before do
-					$game.board_state[[5,3]] = King.new([5,3],"W", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+					$game.board_state[[5,3]] = King.new([5,3],"WHITE", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 					$game.board_state[[5,1]] = nil
-					$game.board_state[[6,4]] = King.new([6,4],"B", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+					$game.board_state[[6,4]] = King.new([6,4],"BLACK", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 					$game.board_state[[4,8]] = nil 
 					$game.updt_moves
 				end

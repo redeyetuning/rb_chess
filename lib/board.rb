@@ -14,25 +14,25 @@ class Board
 		tiles = [*1..8].repeated_permutation(2).to_a #Array from "1,1" -> "8,8"
 		@board_state = Hash[tiles.map{|tile| [tile, nil]}]
 
-		[[1,2],[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[8,2]].each {|tile| @board_state[tile] = Pawn.new(tile, "W")}
-		[[1,1],[8,1]].each {|tile| @board_state[tile] = Rook.new(tile, "W", [[1,0],[-1,0],[0,1],[0,-1]])}
-		[[2,1],[7,1]].each {|tile| @board_state[tile] = Knight.new(tile, "W", [[1,2], [1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])}
-		[[3,1],[6,1]].each {|tile| @board_state[tile] = Bishop.new(tile,"W", [[1,1],[1,-1],[-1,1],[-1,-1]])}
-		@board_state[[4,1]] = Queen.new([4,1], "W",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
-		@board_state[[5,1]] = King.new([5,1],"W", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+		[[1,2],[2,2],[3,2],[4,2],[5,2],[6,2],[7,2],[8,2]].each {|tile| @board_state[tile] = Pawn.new(tile, "WHITE")}
+		[[1,1],[8,1]].each {|tile| @board_state[tile] = Rook.new(tile, "WHITE", [[1,0],[-1,0],[0,1],[0,-1]])}
+		[[2,1],[7,1]].each {|tile| @board_state[tile] = Knight.new(tile, "WHITE", [[1,2], [1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])}
+		[[3,1],[6,1]].each {|tile| @board_state[tile] = Bishop.new(tile,"WHITE", [[1,1],[1,-1],[-1,1],[-1,-1]])}
+		@board_state[[4,1]] = Queen.new([4,1], "WHITE",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+		@board_state[[5,1]] = King.new([5,1],"WHITE", [[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 		@w_king_pos = [5,1]
 
-		[[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],[8,7]].each {|tile| @board_state[tile] = Pawn.new(tile,"B")}
-		[[1,8],[8,8]].each {|tile| @board_state[tile] = Rook.new(tile,"B", [[1,0],[-1,0],[0,1],[0,-1]])}
-		[[2,8],[7,8]].each {|tile| @board_state[tile] = Knight.new(tile,"B", [[1,2], [1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])}
-		[[3,8],[6,8]].each {|tile| @board_state[tile] = Bishop.new(tile,"B", [[1,1],[1,-1],[-1,1],[-1,-1]])}
-		@board_state[[5,8]] = Queen.new([5,8],"B",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
-		@board_state[[4,8]] = King.new([4,8],"B",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+		[[1,7],[2,7],[3,7],[4,7],[5,7],[6,7],[7,7],[8,7]].each {|tile| @board_state[tile] = Pawn.new(tile,"BLACK")}
+		[[1,8],[8,8]].each {|tile| @board_state[tile] = Rook.new(tile,"BLACK", [[1,0],[-1,0],[0,1],[0,-1]])}
+		[[2,8],[7,8]].each {|tile| @board_state[tile] = Knight.new(tile,"BLACK", [[1,2], [1,-2],[-1,2],[-1,-2],[2,1],[2,-1],[-2,1],[-2,-1]])}
+		[[3,8],[6,8]].each {|tile| @board_state[tile] = Bishop.new(tile,"BLACK", [[1,1],[1,-1],[-1,1],[-1,-1]])}
+		@board_state[[5,8]] = Queen.new([5,8],"BLACK",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
+		@board_state[[4,8]] = King.new([4,8],"BLACK",[[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1],[-1,0],[-1,1]])
 		@b_king_pos = [4,8]	
 	end
 
 	def turn_colour
-		(@turns == 0 or @turns%2 == 0) ?  (@turn_colour = "W") : (@turn_colour = "B")
+		(@turns == 0 or @turns%2 == 0) ?  (@turn_colour = "WHITE") : (@turn_colour = "BLACK")
 	end
 
 
@@ -65,7 +65,7 @@ class Board
 	end
 
 	def correct_strt? (coord)
-		(@turns == 0 or @turns%2 == 0) ? turn_colour = "W" : turn_colour = "B"
+		(@turns == 0 or @turns%2 == 0) ? turn_colour = "WHITE" : turn_colour = "BLACK"
 		
 		if coord == nil
 			false	
@@ -80,7 +80,7 @@ class Board
 	end
 
 	def make_move
-		@turn_colour == "W" ? opp = "B" : opp = "W"
+		@turn_colour == "WHITE" ? opp = "BLACK" : opp = "WHITE"
 		puts "-> #{@turn_colour} TURN <-\n\n"
 		loop do
 			strt = get_move("start") until correct_strt?(strt) 
@@ -91,7 +91,7 @@ class Board
 				@board_state[fin].cur_pos = fin
 				@board_state[strt] = nil
 				if @board_state[fin].class.name == "King"
-					@turn_colour == "B" ? @b_king_pos = fin : @w_king_pos = fin
+					@turn_colour == "BLACK" ? @b_king_pos = fin : @w_king_pos = fin
 				end
 				break
 			else
@@ -103,7 +103,7 @@ class Board
 	end
 
 	def in_check? colour
-		colour == "B" ? pos = b_king_pos : pos = w_king_pos
+		colour == "BLACK" ? pos = b_king_pos : pos = w_king_pos
 		@board_state.any? do |key, value|
 			if value != nil and value.colour != colour
 				value.moves.include?(pos)
