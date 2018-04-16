@@ -2,6 +2,7 @@ require_relative 'board'
 require_relative 'pieces'
 
 $game = Board.new
+$act_board = $game
 $game.updt_moves
 $game.disp_board
 
@@ -10,6 +11,5 @@ $game.disp_board
 	$game.turn_colour
 	$game
 	$game.make_move
-	$game.disp_board
 	$game.turns += 1
 end

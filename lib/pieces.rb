@@ -18,12 +18,12 @@ class Pieces
 			i = @cur_pos[0] + combo[0]	
 			j = @cur_pos[1] + combo[1]
 			
-			while ($game.board_state[[i,j]].nil? or $game.board_state[[i,j]].colour !=self.colour) and i<9 and j<9 and i>0 and j>0
+			while ($act_board.board_state[[i,j]].nil? or $act_board.board_state[[i,j]].colour !=self.colour) and i<9 and j<9 and i>0 and j>0
 
 				@moves << [i,j]
 				if self.class.name == "King" or self.class.name == "Knight"
 					break
-				elsif $game.board_state[[i,j]] != nil
+				elsif $act_board.board_state[[i,j]] != nil
 					break
 				else 
 					i += combo[0] 	
@@ -41,15 +41,15 @@ class Pawn < Pieces
 	def valid_moves
 		@moves =[]
 		self.colour == "WHITE" ? i = 1 : i = -1
-		if $game.board_state[[@cur_pos[0], @cur_pos[1]+(i)]].nil?
+		if $act_board.board_state[[@cur_pos[0], @cur_pos[1]+(i)]].nil?
 				@moves << [@cur_pos[0], @cur_pos[1]+(i)]
-				if ((@cur_pos[1] == 2 && self.colour == "WHITE") or (@cur_pos[1] == 7 && self.colour == "BLACK")) and $game.board_state[[@cur_pos[0], @cur_pos[1]+(2*i)]].nil?
+				if ((@cur_pos[1] == 2 && self.colour == "WHITE") or (@cur_pos[1] == 7 && self.colour == "BLACK")) and $act_board.board_state[[@cur_pos[0], @cur_pos[1]+(2*i)]].nil?
 					@moves << [@cur_pos[0], @cur_pos[1]+(2*i)]
 				end	
 		end
 
-		if (@cur_pos[0]-1) > 0 && $game.board_state[[@cur_pos[0]-1,@cur_pos[1]+i]] != nil then @moves << [@cur_pos[0]-1,@cur_pos[1]+i] end
-		if (@cur_pos[0]+1) < 9 && $game.board_state[[@cur_pos[0]+1,@cur_pos[1]+i]] != nil then @moves << [@cur_pos[0]+1,@cur_pos[1]+i] end
+		if (@cur_pos[0]-1) > 0 && $act_board.board_state[[@cur_pos[0]-1,@cur_pos[1]+i]] != nil then @moves << [@cur_pos[0]-1,@cur_pos[1]+i] end
+		if (@cur_pos[0]+1) < 9 && $act_board.board_state[[@cur_pos[0]+1,@cur_pos[1]+i]] != nil then @moves << [@cur_pos[0]+1,@cur_pos[1]+i] end
 		
 	end
 	
