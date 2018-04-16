@@ -1,4 +1,4 @@
-# This class tracks the progress of an ongoing Chess game, including position of the pieces.
+# This class tracks the progress of an ongoing Chess , including position of the pieces.
 require_relative 'pieces'
 
 class Board
@@ -9,6 +9,13 @@ class Board
 		@turns = 0
 		populate_board
 	end
+
+	#def initialize_copy(source)
+  #		super
+  #		@board_state = source.board_state.dup
+  #		@b_king_pos = source.b_king_pos.dup
+	#		@w_king_pos = source.w_king_pos.dup
+	#end
 
 	def populate_board
 		tiles = [*1..8].repeated_permutation(2).to_a #Array from "1,1" -> "8,8"
@@ -44,7 +51,7 @@ class Board
 			print "#{y} " 
 			(1..8).each {|x| 
 				if @board_state[[x,y]] != nil
-					print "| #{$game.board_state[[x,y]].ref} "
+					print "| #{$act_board.board_state[[x,y]].ref} "
 				else  
 					print "|    "  
 				end
@@ -99,7 +106,11 @@ class Board
 			end
 		end
 		updt_moves
-		puts "#{opp} is in check!" if in_check?(opp)
+		disp_board
+		puts "#{opp} is in check!" if in_check?(opp) 
+		puts "#{opp} is in checkmate!" if in_checkmate?(opp)
+		$act_board = $game
+		
 	end
 
 	def in_check? colour
@@ -109,6 +120,22 @@ class Board
 				value.moves.include?(pos)
 			end 
 		end		
+
+	end
+
+	def in_checkmate? colour
+		colour == "BLACK" ? pos = b_king_pos : pos = w_king_pos
+		return false if @board_state[pos].moves == [] 
+		@board_state[pos].moves.all? do |move|
+				test_board = Marshal::load(Marshal.dump($act_board))
+				$act_board = test_board
+				test_board.board_state[move] = test_board.board_state[pos]
+				test_board.board_state[move].cur_pos = move
+				test_board.board_state[pos]=nil
+				colour == "WHITE" ? test_board.w_king_pos = move : test_board.b_king_pos = move
+				test_board.updt_moves
+				test_board.in_check?(colour)					
+		end
 
 	end
 
