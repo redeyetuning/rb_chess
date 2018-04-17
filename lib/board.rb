@@ -1,6 +1,7 @@
 # This class tracks the progress of an ongoing Chess , including position of the pieces.
 require_relative 'pieces'
 
+
 class Board
 
 	attr_accessor :board_state, :turns, :turn_colour, :b_king_pos, :w_king_pos 
@@ -10,12 +11,11 @@ class Board
 		populate_board
 	end
 
-	#def initialize_copy(source)
-  #		super
-  #		@board_state = source.board_state.dup
-  #		@b_king_pos = source.b_king_pos.dup
-	#		@w_king_pos = source.w_king_pos.dup
-	#end
+	def save
+	File.open('save_game.dump', 'w'){|f| f.write(YAML.dump($game))}
+	puts "             <- Game Saved ->"
+	exit
+	end
 
 	def populate_board
 		tiles = [*1..8].repeated_permutation(2).to_a #Array from "1,1" -> "8,8"
@@ -68,7 +68,8 @@ class Board
 
 	def get_move (type)
 		puts "Enter the #{type} coordinate of your move:"
-		gets.chomp.split(",").map{|x| x.to_i}
+		input = gets.chomp
+		input.downcase == "s" ? save : input.split(",").map{|x| x.to_i}
 	end
 
 	def correct_strt? (coord)

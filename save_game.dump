@@ -1,0 +1,698 @@
+--- !ruby/object:Board
+turns: 2
+board_state:
+  ? - 1
+    - 1
+  : !ruby/object:Rook
+    cur_pos:
+    - 1
+    - 1
+    colour: WHITE
+    combos:
+    - - 1
+      - 0
+    - - -1
+      - 0
+    - - 0
+      - 1
+    - - 0
+      - -1
+    ref: WR
+    moves:
+    - - 1
+      - 2
+    - - 1
+      - 3
+  ? - 1
+    - 2
+  : 
+  ? - 1
+    - 3
+  : 
+  ? - 1
+    - 4
+  : !ruby/object:Pawn
+    cur_pos:
+    - 1
+    - 4
+    colour: WHITE
+    combos: 
+    ref: WP
+    moves: []
+  ? - 1
+    - 5
+  : !ruby/object:Pawn
+    cur_pos:
+    - 1
+    - 5
+    colour: BLACK
+    combos: 
+    ref: BP
+    moves: []
+  ? - 1
+    - 6
+  : 
+  ? - 1
+    - 7
+  : 
+  ? - 1
+    - 8
+  : !ruby/object:Rook
+    cur_pos:
+    - 1
+    - 8
+    colour: BLACK
+    combos:
+    - - 1
+      - 0
+    - - -1
+      - 0
+    - - 0
+      - 1
+    - - 0
+      - -1
+    ref: BR
+    moves:
+    - - 1
+      - 7
+    - - 1
+      - 6
+  ? - 2
+    - 1
+  : !ruby/object:Knight
+    cur_pos:
+    - 2
+    - 1
+    colour: WHITE
+    combos:
+    - - 1
+      - 2
+    - - 1
+      - -2
+    - - -1
+      - 2
+    - - -1
+      - -2
+    - - 2
+      - 1
+    - - 2
+      - -1
+    - - -2
+      - 1
+    - - -2
+      - -1
+    ref: WK
+    moves:
+    - - 3
+      - 3
+    - - 1
+      - 3
+  ? - 2
+    - 2
+  : !ruby/object:Pawn
+    cur_pos:
+    - 2
+    - 2
+    colour: WHITE
+    combos: 
+    ref: WP
+    moves:
+    - - 2
+      - 3
+    - - 2
+      - 4
+  ? - 2
+    - 3
+  : 
+  ? - 2
+    - 4
+  : 
+  ? - 2
+    - 5
+  : 
+  ? - 2
+    - 6
+  : 
+  ? - 2
+    - 7
+  : !ruby/object:Pawn
+    cur_pos:
+    - 2
+    - 7
+    colour: BLACK
+    combos: 
+    ref: BP
+    moves:
+    - - 2
+      - 6
+    - - 2
+      - 5
+  ? - 2
+    - 8
+  : !ruby/object:Knight
+    cur_pos:
+    - 2
+    - 8
+    colour: BLACK
+    combos:
+    - - 1
+      - 2
+    - - 1
+      - -2
+    - - -1
+      - 2
+    - - -1
+      - -2
+    - - 2
+      - 1
+    - - 2
+      - -1
+    - - -2
+      - 1
+    - - -2
+      - -1
+    ref: BK
+    moves:
+    - - 3
+      - 6
+    - - 1
+      - 6
+  ? - 3
+    - 1
+  : !ruby/object:Bishop
+    cur_pos:
+    - 3
+    - 1
+    colour: WHITE
+    combos:
+    - - 1
+      - 1
+    - - 1
+      - -1
+    - - -1
+      - 1
+    - - -1
+      - -1
+    ref: WB
+    moves: []
+  ? - 3
+    - 2
+  : !ruby/object:Pawn
+    cur_pos:
+    - 3
+    - 2
+    colour: WHITE
+    combos: 
+    ref: WP
+    moves:
+    - - 3
+      - 3
+    - - 3
+      - 4
+  ? - 3
+    - 3
+  : 
+  ? - 3
+    - 4
+  : 
+  ? - 3
+    - 5
+  : 
+  ? - 3
+    - 6
+  : 
+  ? - 3
+    - 7
+  : !ruby/object:Pawn
+    cur_pos:
+    - 3
+    - 7
+    colour: BLACK
+    combos: 
+    ref: BP
+    moves:
+    - - 3
+      - 6
+    - - 3
+      - 5
+  ? - 3
+    - 8
+  : !ruby/object:Bishop
+    cur_pos:
+    - 3
+    - 8
+    colour: BLACK
+    combos:
+    - - 1
+      - 1
+    - - 1
+      - -1
+    - - -1
+      - 1
+    - - -1
+      - -1
+    ref: BB
+    moves: []
+  ? - 4
+    - 1
+  : !ruby/object:Queen
+    cur_pos:
+    - 4
+    - 1
+    colour: WHITE
+    combos:
+    - - 0
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 0
+    - - 1
+      - -1
+    - - 0
+      - -1
+    - - -1
+      - -1
+    - - -1
+      - 0
+    - - -1
+      - 1
+    ref: WQ
+    moves: []
+  ? - 4
+    - 2
+  : !ruby/object:Pawn
+    cur_pos:
+    - 4
+    - 2
+    colour: WHITE
+    combos: 
+    ref: WP
+    moves:
+    - - 4
+      - 3
+    - - 4
+      - 4
+  ? - 4
+    - 3
+  : 
+  ? - 4
+    - 4
+  : 
+  ? - 4
+    - 5
+  : 
+  ? - 4
+    - 6
+  : 
+  ? - 4
+    - 7
+  : !ruby/object:Pawn
+    cur_pos:
+    - 4
+    - 7
+    colour: BLACK
+    combos: 
+    ref: BP
+    moves:
+    - - 4
+      - 6
+    - - 4
+      - 5
+  ? - 4
+    - 8
+  : !ruby/object:King
+    cur_pos:
+    - 4
+    - 8
+    colour: BLACK
+    combos:
+    - - 0
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 0
+    - - 1
+      - -1
+    - - 0
+      - -1
+    - - -1
+      - -1
+    - - -1
+      - 0
+    - - -1
+      - 1
+    ref: B+
+    moves: []
+  ? - 5
+    - 1
+  : !ruby/object:King
+    cur_pos:
+    - 5
+    - 1
+    colour: WHITE
+    combos:
+    - - 0
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 0
+    - - 1
+      - -1
+    - - 0
+      - -1
+    - - -1
+      - -1
+    - - -1
+      - 0
+    - - -1
+      - 1
+    ref: W+
+    moves: []
+  ? - 5
+    - 2
+  : !ruby/object:Pawn
+    cur_pos:
+    - 5
+    - 2
+    colour: WHITE
+    combos: 
+    ref: WP
+    moves:
+    - - 5
+      - 3
+    - - 5
+      - 4
+  ? - 5
+    - 3
+  : 
+  ? - 5
+    - 4
+  : 
+  ? - 5
+    - 5
+  : 
+  ? - 5
+    - 6
+  : 
+  ? - 5
+    - 7
+  : !ruby/object:Pawn
+    cur_pos:
+    - 5
+    - 7
+    colour: BLACK
+    combos: 
+    ref: BP
+    moves:
+    - - 5
+      - 6
+    - - 5
+      - 5
+  ? - 5
+    - 8
+  : !ruby/object:Queen
+    cur_pos:
+    - 5
+    - 8
+    colour: BLACK
+    combos:
+    - - 0
+      - 1
+    - - 1
+      - 1
+    - - 1
+      - 0
+    - - 1
+      - -1
+    - - 0
+      - -1
+    - - -1
+      - -1
+    - - -1
+      - 0
+    - - -1
+      - 1
+    ref: BQ
+    moves: []
+  ? - 6
+    - 1
+  : !ruby/object:Bishop
+    cur_pos:
+    - 6
+    - 1
+    colour: WHITE
+    combos:
+    - - 1
+      - 1
+    - - 1
+      - -1
+    - - -1
+      - 1
+    - - -1
+      - -1
+    ref: WB
+    moves: []
+  ? - 6
+    - 2
+  : !ruby/object:Pawn
+    cur_pos:
+    - 6
+    - 2
+    colour: WHITE
+    combos: 
+    ref: WP
+    moves:
+    - - 6
+      - 3
+    - - 6
+      - 4
+  ? - 6
+    - 3
+  : 
+  ? - 6
+    - 4
+  : 
+  ? - 6
+    - 5
+  : 
+  ? - 6
+    - 6
+  : 
+  ? - 6
+    - 7
+  : !ruby/object:Pawn
+    cur_pos:
+    - 6
+    - 7
+    colour: BLACK
+    combos: 
+    ref: BP
+    moves:
+    - - 6
+      - 6
+    - - 6
+      - 5
+  ? - 6
+    - 8
+  : !ruby/object:Bishop
+    cur_pos:
+    - 6
+    - 8
+    colour: BLACK
+    combos:
+    - - 1
+      - 1
+    - - 1
+      - -1
+    - - -1
+      - 1
+    - - -1
+      - -1
+    ref: BB
+    moves: []
+  ? - 7
+    - 1
+  : !ruby/object:Knight
+    cur_pos:
+    - 7
+    - 1
+    colour: WHITE
+    combos:
+    - - 1
+      - 2
+    - - 1
+      - -2
+    - - -1
+      - 2
+    - - -1
+      - -2
+    - - 2
+      - 1
+    - - 2
+      - -1
+    - - -2
+      - 1
+    - - -2
+      - -1
+    ref: WK
+    moves:
+    - - 8
+      - 3
+    - - 6
+      - 3
+  ? - 7
+    - 2
+  : !ruby/object:Pawn
+    cur_pos:
+    - 7
+    - 2
+    colour: WHITE
+    combos: 
+    ref: WP
+    moves:
+    - - 7
+      - 3
+    - - 7
+      - 4
+  ? - 7
+    - 3
+  : 
+  ? - 7
+    - 4
+  : 
+  ? - 7
+    - 5
+  : 
+  ? - 7
+    - 6
+  : 
+  ? - 7
+    - 7
+  : !ruby/object:Pawn
+    cur_pos:
+    - 7
+    - 7
+    colour: BLACK
+    combos: 
+    ref: BP
+    moves:
+    - - 7
+      - 6
+    - - 7
+      - 5
+  ? - 7
+    - 8
+  : !ruby/object:Knight
+    cur_pos:
+    - 7
+    - 8
+    colour: BLACK
+    combos:
+    - - 1
+      - 2
+    - - 1
+      - -2
+    - - -1
+      - 2
+    - - -1
+      - -2
+    - - 2
+      - 1
+    - - 2
+      - -1
+    - - -2
+      - 1
+    - - -2
+      - -1
+    ref: BK
+    moves:
+    - - 8
+      - 6
+    - - 6
+      - 6
+  ? - 8
+    - 1
+  : !ruby/object:Rook
+    cur_pos:
+    - 8
+    - 1
+    colour: WHITE
+    combos:
+    - - 1
+      - 0
+    - - -1
+      - 0
+    - - 0
+      - 1
+    - - 0
+      - -1
+    ref: WR
+    moves: []
+  ? - 8
+    - 2
+  : !ruby/object:Pawn
+    cur_pos:
+    - 8
+    - 2
+    colour: WHITE
+    combos: 
+    ref: WP
+    moves:
+    - - 8
+      - 3
+    - - 8
+      - 4
+  ? - 8
+    - 3
+  : 
+  ? - 8
+    - 4
+  : 
+  ? - 8
+    - 5
+  : 
+  ? - 8
+    - 6
+  : 
+  ? - 8
+    - 7
+  : !ruby/object:Pawn
+    cur_pos:
+    - 8
+    - 7
+    colour: BLACK
+    combos: 
+    ref: BP
+    moves:
+    - - 8
+      - 6
+    - - 8
+      - 5
+  ? - 8
+    - 8
+  : !ruby/object:Rook
+    cur_pos:
+    - 8
+    - 8
+    colour: BLACK
+    combos:
+    - - 1
+      - 0
+    - - -1
+      - 0
+    - - 0
+      - 1
+    - - 0
+      - -1
+    ref: BR
+    moves: []
+w_king_pos:
+- 5
+- 1
+b_king_pos:
+- 4
+- 8
+turn_colour: WHITE
