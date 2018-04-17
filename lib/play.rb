@@ -15,22 +15,21 @@ class Chess
 	end
 
 	def self.intro
-	puts "Welcome to REDEYE Chess 2018\n\nWould you like to start a (N)ew game or (L)oad a saved one?"
-	gets.chomp.downcase == "l" ? load : $game = Board.new and puts "             <- Game Started ->\n\n"
-	puts "Type (S) at any time to Save your game\n\n"  
+		puts "Welcome to REDEYE Chess 2018\n\nWould you like to start a (N)ew game or (L)oad a saved one?"
+		gets.chomp.downcase == "l" ? load : $game = Board.new and puts "             <- Game Started ->\n\n"
+		puts "Type (S) at any time to Save your game\n\n"  
+		$act_board = $game
+		$game.updt_moves
+		$game.disp_board
 	end
-
 end
 
 Chess.intro
-$act_board = $game
-$game.updt_moves
-$game.disp_board
 
 
-20.times do 
+
+loop do 
 	$game.turn_colour
-	$game
 	$game.make_move
 	$game.turns += 1
 end

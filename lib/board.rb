@@ -109,7 +109,10 @@ class Board
 		updt_moves
 		disp_board
 		puts "#{opp} is in check!" if in_check?(opp) 
-		puts "#{opp} is in checkmate!" if in_checkmate?(opp)
+		if in_checkmate?(opp)
+			puts "#{opp} is in checkmate!\n\n              <- #{@turn_colour} WINS!! ->" 
+			exit
+		end
 		$act_board = $game
 		
 	end
