@@ -41,16 +41,16 @@ class Pawn < Pieces
 	def valid_moves
 		@moves =[]
 		self.colour == "WHITE" ? i = 1 : i = -1
-		if $act_board.board_state[[@cur_pos[0], @cur_pos[1]+(i)]].nil?
+		if $act_board.board_state[[@cur_pos[0], @cur_pos[1]+(i)]].nil? and @cur_pos[1]+(i) < 9 
 				@moves << [@cur_pos[0], @cur_pos[1]+(i)]
 				if ((@cur_pos[1] == 2 && self.colour == "WHITE") or (@cur_pos[1] == 7 && self.colour == "BLACK")) and $act_board.board_state[[@cur_pos[0], @cur_pos[1]+(2*i)]].nil?
 					@moves << [@cur_pos[0], @cur_pos[1]+(2*i)]
-				end	
+				end
 		end
 
-		if (@cur_pos[0]-1) > 0 && $act_board.board_state[[@cur_pos[0]-1,@cur_pos[1]+i]] != nil then @moves << [@cur_pos[0]-1,@cur_pos[1]+i] end
-		if (@cur_pos[0]+1) < 9 && $act_board.board_state[[@cur_pos[0]+1,@cur_pos[1]+i]] != nil then @moves << [@cur_pos[0]+1,@cur_pos[1]+i] end
-		
+		@moves << [@cur_pos[0] + 1, @cur_pos[1]+(i)] if $act_board.board_state[[@cur_pos[0]+1 , @cur_pos[1]+(i)]] !=nil and @cur_pos[0]+1 < 9 and @cur_pos[1]+(i) < 9 and @cur_pos[1]+(i) > 0 
+		@moves << [@cur_pos[0] - 1, @cur_pos[1]+(i)] if $act_board.board_state[[@cur_pos[0]-1 , @cur_pos[1]+(i)]] !=nil and @cur_pos[0]-1 > 0 and @cur_pos[1]+(i) < 9 and @cur_pos[1]+(i) > 0
+
 	end
 	
 end
